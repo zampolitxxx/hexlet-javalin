@@ -14,6 +14,9 @@ public class HelloWorld {
             String result = "Hello, " + ctx.queryParamAsClass("name", String.class).getOrDefault("World");
             ctx.result(result);
         });
+        app.get("/user/{id}/lesson/{lessonId}", ctx -> {
+            ctx.result("userId = " + ctx.pathParam("id") + "lessonId = " + ctx.pathParam("lessonId"));
+        });
         app.start(7070); // Стартуем веб-сервер
     }
 }
