@@ -21,10 +21,13 @@ dependencies {
     // Версии зависимостей могут отличаться
     // Здесь мы сразу подключаем зависимости,
     // которые понадобятся во время обучения
-    implementation("io.javalin:javalin:5.6.1")
-    implementation("org.slf4j:slf4j-simple:2.0.7")
-    implementation("io.javalin:javalin-rendering:5.6.0")
-    implementation("gg.jte:jte:3.0.1")
+    implementation("io.javalin:javalin:5.6.3")
+    implementation("org.slf4j:slf4j-simple:2.0.9")
+    implementation("io.javalin:javalin-rendering:5.6.3")
+    implementation("gg.jte:jte:3.1.6")
+    //lombok
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
