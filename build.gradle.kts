@@ -32,6 +32,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:1.11.0")
+    //
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
 }
 
 tasks.test {
