@@ -1,11 +1,12 @@
 package org.example.hexlet.model;
-import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class Course {
+
+public class Course{
     private Integer id;
-    private String title;
+    private String name;
     private String description;
 }
