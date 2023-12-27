@@ -1,14 +1,19 @@
-@import org.example.hexlet.dto.users.UserPage
+@import org.example.hexlet.dto.users.UsersPage
+@import org.example.hexlet.model.User
 
-@param UserPage page
+@param UsersPage page
 
 @template.layout.page(
 header = @`
     <h2><a href="/">link to main page</a></h2>
+    <h2><a href="/users/build">add user</a></h2>
 `,
 content = @`
-    <h2>content of courses/index.jte</h2>
-    <h2>${page.getUser().getName()}</h2>
+    @for(User user : page.getUsersList())
+        <div>
+            <p>${user.getName()}</p>
+        </div>
+    @endfor
 `,
 footer = @`
     <h2><a href="https://github.com/zampolitxxx/">MyGithub</a></h2>

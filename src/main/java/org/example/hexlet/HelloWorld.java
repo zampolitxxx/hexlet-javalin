@@ -7,8 +7,10 @@ import org.example.hexlet.dto.courses.CoursePage;
 //import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.dto.users.UserPage;
+import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
 import org.example.hexlet.model.User;
+import org.example.hexlet.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,13 +55,21 @@ public class HelloWorld {
             }
         });
 
-        app.get("/users/{id}", ctx -> {
-            var id = ctx.pathParamAsClass("id", String.class).getOrDefault("Zero");
-            var user = new User("<h1>" + id + "</h1>");
-            var page = new UserPage(user);
-            var res = StringEscapeUtils.escapeHtml4(id);
-            ctx.contentType("html");
+        app.get("/users", ctx -> {
+            var page = new UsersPage(UserRepository.getEntities());
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
+        });
+        app.post("/users", ctx -> {
+            var name = ctx.formParam("name");
+            var surname = ctx.formParam("surname");
+            var email = ctx.formParam("email");
+            var user = new User(name, surname, email);
+            UserRepository.addUser(user);
+            ctx.redirect("/users");
+
+        });
+        app.get("/users/build", ctx -> {
+            ctx.render("users/buildUser.jte");
         });
         app.start(7070);
     }
