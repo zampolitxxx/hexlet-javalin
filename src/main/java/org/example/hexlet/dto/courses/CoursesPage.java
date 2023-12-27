@@ -10,4 +10,6 @@ import java.util.List;
 @Getter
 public class CoursesPage{
     private List<Course> coursesList;
+    private String nameTerm;
+    private String descriptionTerm;
 }

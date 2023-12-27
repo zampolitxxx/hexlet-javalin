@@ -37,20 +37,20 @@ public class HelloWorld {
         });
 
         app.get("/courses", ctx -> {
-            var nameTerm = ctx.queryParamAsClass("nameTerm", String.class).getOrDefault("Zero");
-//            var description = ctx.queryParamAsClass("descriptionTerm", String.class).get();
+            var nameTerm = ctx.queryParam("nameTerm");
+            var descriptionTerm = ctx.queryParam("descriptionTerm");
             List<Course> res = new ArrayList<>();
-            if(nameTerm != null) {
+            if(nameTerm != null && descriptionTerm != null) {
                 res.addAll(coursesList.stream()
                         .filter(x -> x.getName().contains(nameTerm))
+                        .filter(x -> x.getDescription().contains(descriptionTerm))
                         .toList());
-                var page = new CoursesPage(res);
+                var page = new CoursesPage(res, nameTerm, descriptionTerm);
                 ctx.render("courses/index.jte", Collections.singletonMap("page", page));
             } else {
-                var page = new CoursesPage(coursesList);
+                var page = new CoursesPage(coursesList, nameTerm, descriptionTerm);
                 ctx.render("courses/index.jte", Collections.singletonMap("page", page));
             }
-
         });
 
         app.get("/users/{id}", ctx -> {

@@ -8,8 +8,8 @@ header = @`
 `,
 content = @`
     <form action="/courses" method="get">
-        <p><input type="search" required name="nameTerm" placeholder="name"></p>
-        <p><input type="search" name="descriptionTerm"></p>
+        <p><input type="search" required name="nameTerm" placeholder="name" value="${page.getNameTerm()}"></p>
+        <p><input type="search" name="descriptionTerm" placeholder="description" value="${page.getDescriptionTerm()}"></p>
         <p><input type="submit" value="Search!"></p>
     </form>
     @if(page.getCoursesList().isEmpty())
