@@ -1,6 +1,7 @@
 package org.example.hexlet;
 
 import io.javalin.Javalin;
+import io.javalin.validation.ValidationException;
 import org.apache.commons.text.StringEscapeUtils;
 import org.example.hexlet.dto.courses.CoursePage;
 //import org.example.hexlet.dto.courses.CoursePage;
@@ -54,20 +55,30 @@ public class HelloWorld {
                 ctx.render("courses/index.jte", Collections.singletonMap("page", page));
             }
         });
-
+        //Show all users
         app.get("/users", ctx -> {
             var page = new UsersPage(UserRepository.getEntities());
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
+        //Post-hendler to create user
         app.post("/users", ctx -> {
             var name = ctx.formParam("name");
             var surname = ctx.formParam("surname");
             var email = ctx.formParam("email");
-            var user = new User(name, surname, email);
-            UserRepository.addUser(user);
-            ctx.redirect("/users");
+            try {
+                var password = ctx.formParam("password");
+                var passwordConfirm = ctx.formParamAsClass("passwordConfirm", String.class)
+                        .check(value -> value.equals(password), "Passwords are not equals")
+                        .get();
+                var user = new User(name, surname, email, passwordConfirm);
+                UserRepository.addUser(user);
+                ctx.redirect("/users");
+            } catch (ValidationException e) {
+                var page = new
+            }
 
         });
+        //Get-hendler with HTML-form
         app.get("/users/build", ctx -> {
             ctx.render("users/buildUser.jte");
         });

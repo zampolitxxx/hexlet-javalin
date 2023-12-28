@@ -26,6 +26,11 @@
         </div>
         <div>
             <label>
+                <input type="password" name="passwordConfirm" placeholder="Confirmation Password">
+            </label>
+        </div>
+        <div>
+            <label>
                 <input type="submit" value="Register">
             </label>
         </div>
