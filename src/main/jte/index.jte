@@ -1,6 +1,7 @@
 @template.layout.page(
     header = @`
-    <h2><a href="/courses">link to courses page</a></h2>
+    <h2><a href="/courses">Courses</a></h2>
+    <h2><a href="/users">Users</a></h2>
     `,
     content = @`
     <h2>content of index.jte</h2>

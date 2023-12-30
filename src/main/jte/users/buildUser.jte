@@ -1,3 +1,5 @@
+@import org.example.hexlet.dto.users.BuildUserPage
+@param BuildUserPage page
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,15 +10,29 @@
     <title>Document</title>
 </head>
 <body>
+@if(page.getErrors() != null)
+    <ul>
+        @for(var validator : page.getErrors().values())
+            @for(var error : validator)
+                <li>${error.getMessage()}</li>
+            @endfor
+        @endfor
+    </ul>
+@endif
     <form action="/users" method="post">
         <div>
             <label>
-                <input type="text" name="name" placeholder="name">
+                <input type="text" name="name" placeholder="name" value="${page.getName()}">
             </label>
         </div>
         <div>
             <label>
-                <input type="text" name="surname" placeholder="surname">
+                <input type="text" name="surname" placeholder="surname" value="${page.getSurname()}">
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="text" name="email" placeholder="email" value="${page.getEmail()}">
             </label>
         </div>
         <div>
