@@ -1,11 +1,12 @@
 @import org.example.hexlet.dto.courses.CoursesPage
+@import org.example.hexlet.util.NamedRoutes
 
 @param CoursesPage page
 
 @template.layout.page(
 header = @`
-    <h2><a href="/">link to main page</a></h2>
-    <h2><a href="/courses/build">add Course</a></h2>
+    <h2><a href="${NamedRoutes.getRootPath()}">link to main page</a></h2>
+    <h2><a href="${NamedRoutes.getBuildCoursePath()}">add Course</a></h2>
 `,
 content = @`
     <form action="/courses" method="get">

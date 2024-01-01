@@ -1,4 +1,5 @@
 @import org.example.hexlet.dto.users.BuildUserPage
+@import org.example.hexlet.util.NamedRoutes
 @param BuildUserPage page
 <!doctype html>
 <html lang="en">
@@ -19,7 +20,7 @@
         @endfor
     </ul>
 @endif
-    <form action="/users" method="post">
+    <form action="${NamedRoutes.getUsersPath()}" method="post">
         <div>
             <label>
                 <input type="text" name="name" placeholder="name" value="${page.getName()}">
